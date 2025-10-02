@@ -1,0 +1,34 @@
+<% layout("layouts/boilerplate") %>
+<body>
+    <!-- <div class="bgimage">
+        <img src="/images/background.jpg" alt="Homepage Image" style=" filter: brightness(50%);">
+
+        <div class="tagline">
+            <h1>Housify - find a home away from home.</h1>
+            <h3>Rooms, Flats, Apartments, Offices etc.</h3>
+        </div>
+    </div> -->
+    <div class="row">
+        <div class="col-12 ">
+            <h2>All Listings</h2>
+    
+    <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-1 ">
+        <% listings.forEach(listing => { %>
+            <a href="/listings/<%= listing._id%>" class="text-decoration-none text-dark">
+            <div class="card col" style="width: 20rem;">
+                <img src="<%= listing.image.url %>" class="card-img-top" alt="..." style="height: 20rem;">
+                <div class="card-img-overlay"><%= listing.title %></div>
+            <div class="card-body">
+                <h5 class="card-title"><b><%= listing.title %></b></h5>
+                <p class="card-text"> <%= listing.description %></p>
+            </div>
+            </div>
+            </a>
+        <% }) %>
+    </div>>
+        
+    </div>
+        </div>
+    
+    
+</body>
