@@ -42,6 +42,11 @@ app.get("/listings/new", (req,res)=>{
    res.render("listings/new.ejs");
 });
 
+//Terms and Conditions Page
+app.get("/listings/tnc", (req,res)=>{
+    res.render("listings/tnc.ejs");
+ });
+
 //Show individual listing details
 app.get("/listings/:id", async (req,res)=>{
     const {id} = req.params;
@@ -53,7 +58,8 @@ app.get("/listings/:id", async (req,res)=>{
 
 //Create new listing
 app.post("/listings", async (req,res)=>{
-   const newListingData = req.body.listing; 
+    try{
+        const newListingData = req.body.listing; 
 
     // Convert price to a number
     newListingData.price = parseFloat(newListingData.price); 
@@ -65,6 +71,9 @@ app.post("/listings", async (req,res)=>{
     // Save the listing to the database
     await newListing.save(); 
     res.redirect(`/listings/${newListing._id}`);
+    }catch(err){
+        next(err);
+    }
 });
 
 //Form to edit listing
@@ -97,7 +106,7 @@ app.put("/listings/:id", async (req,res)=>{
     // 5. Save the document to apply the nested change (important!)
     await listing.save();
     res.redirect(`/listings/${listing._id}`);
-    console.log(listing);
+
 });
 
 //delete listing
@@ -121,6 +130,10 @@ app.delete("/listings/:id", async (req,res)=>{
 //     console.log("Sample listing saved to database");
 //     res.send("Sample listing created and saved to database");
 // });
+
+app.use((err, req, res, next) => {
+    res.send("Something went wrong" );
+});
 
 app.listen(8080, () => {
     console.log("Server is running on port 8080"); }

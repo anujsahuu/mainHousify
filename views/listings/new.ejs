@@ -3,7 +3,7 @@
 
         <div class="row">
             <div class="col-8 offset-2">
-                <form method="POST" action="/listings">
+                <form method="POST" action="/listings" class="needs-validation" novalidate>
                 
                 <h2>Create a New Listing</h2>
             <div class="mb-3">
@@ -12,11 +12,12 @@
             </div>
             <div class="mb-3">
                 <label for="price" class="form-label">Price</label>
-                <input type="number" id="price" name="listing[price]" class="form-control" placeholder="Enter Price" required>
+                <input type="number" id="price" name="listing[price]" class="form-control" placeholder="Enter Price" min="0" required>
+                <div class="invalid-feedback">Enter a valid price</div>
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea id="description" name="listing[description]" class="form-control" placeholder="Enter Description" ></textarea>
+                <textarea id="description" name="listing[description]" class="form-control" placeholder="Enter Description" required></textarea>
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Image URL</label>
@@ -25,15 +26,26 @@
             <div class="row">
                 <div class="mb-3 col-4">
                 <label for="location" class="form-label">Location</label>
-                <input type="text" id="location" name="listing[location]" class="form-control" placeholder="Enter Location">
+                <input type="text" id="location" name="listing[location]" class="form-control" placeholder="Enter Location" required>
+                <div class="invalid-feedback">Enter property location</div><br>
+            <div class="form-check">
+                
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                <label class="form-check-label" for="invalidCheck">
+                    <a href="/listings/tnc">Agree to terms and conditions</a>
+                </label>
+                <div class="invalid-feedback">
+                    You must agree before submitting.
+                </div>
+            </div>
             </div>
             <div class="mb-3 col-8">
                 <label for="country" class="form-label">Country</label>
-                <input type="text" id="country" name="listing[country]" class="form-control" placeholder="Enter Country">
+                <input type="text" id="country" name="listing[country]" class="form-control" placeholder="Enter Country" required>
+            <br><button type="submit" class="btn btn-dark ">Create Listing</button>
             </div>
             </div>
             
-            <button type="submit" class="btn btn-dark">Create Listing</button>
             </form>
             </div>
         </div>
