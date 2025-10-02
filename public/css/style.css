@@ -1,6 +1,7 @@
 body{
     margin :0 !important;
     padding :0 !important;
+    padding-top: 5rem !important;
     box-sizing : border-box !important;
     font-family: "plus jakarta sans", sans-serif !important;
     display: flex;
@@ -60,7 +61,7 @@ body{
     padding: 0 !important;
 }
 
-.card-text-p{
+.card-text p{
     font-weight: 400 !important;
 }
 
@@ -77,4 +78,13 @@ body{
     background-color: #d2c4fb !important;
     color: black !important;
     border: none !important;
+}
+
+.show-img{
+    height: 35vh !important;
+}
+
+.btns{
+    display: flex;
+    gap: 1rem;
 }

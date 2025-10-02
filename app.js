@@ -53,14 +53,14 @@ app.get("/listings/:id", async (req,res)=>{
 
 //Create new listing
 app.post("/listings", async (req,res)=>{
-   const newListingData = req.body; 
+   const newListingData = req.body.listing; 
 
     // Convert price to a number
     newListingData.price = parseFloat(newListingData.price); 
 
     // Create a new listing instance
     const newListing = new Listing(newListingData);
-    //console.log(newListing);
+    console.log(newListing);
 
     // Save the listing to the database
     await newListing.save(); 
@@ -76,14 +76,34 @@ app.get("/listings/:id/edit", async (req,res)=>{
 
 //update listing
 app.put("/listings/:id", async (req,res)=>{
-    const {id} = req.params;
-    await Listing.findByIdAndUpdate(id, {...req.body.listing});
-    res.redirect(`/listings/${id}`);
+    const { id } = req.params;
+    
+    // 1. Extract the image URL submitted by the corrected form: listing[image][url]
+    const newImageUrl = req.body.listing.image.url;
+    
+    // 2. Remove the image data from the main body object to prevent Mongoose from trying to overwrite the whole object
+    delete req.body.listing.image; 
+
+    // 3. Update all simple fields (title, price, description, etc.)
+    let listing = await Listing.findByIdAndUpdate(id, { ...req.body.listing });
+
+    // 4. Manually update the nested image.url field if a value was submitted
+    if (newImageUrl) {
+        // Since you removed the image object in step 2, Mongoose loaded the old listing.
+        // We now safely update ONLY the URL on the loaded document.
+        listing.image.url = newImageUrl;
+    }
+    
+    // 5. Save the document to apply the nested change (important!)
+    await listing.save();
+    res.redirect(`/listings/${listing._id}`);
+    console.log(listing);
 });
 
 //delete listing
 app.delete("/listings/:id", async (req,res)=>{
     const {id} = req.params;
+
     await Listing.findByIdAndDelete(id);
     res.redirect("/listings");
 });
