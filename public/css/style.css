@@ -46,9 +46,8 @@ body{
     text-align: left;
 } */
 
-.card{
+.listing-card{
   border: none !important;
-  margin-bottom: 2rem !important;
 }
 
 .card-img-top{
@@ -87,4 +86,23 @@ body{
 .btns{
     display: flex;
     gap: 1rem;
+}
+.card-title{
+    margin-bottom: 2px !important;
+}
+
+.ratingStar{
+    color: #fbbf24 !important;
+    size: 4px !important;
+
+}
+.rmm{
+    margin-bottom: 0 !important;
+}
+.delbtn{
+    background: none !important;
+    border: none !important;
+    color: red !important;
+    font-size: 1.2rem !important;
+    cursor: pointer !important;
 }

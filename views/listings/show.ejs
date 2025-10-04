@@ -1,10 +1,10 @@
 <% layout("layouts/boilerplate") %>
 <body>
     <div class="row mt-3 ">
-        <div class="col-8 offset-3">
+        <div class="col-8 offset-3 col-md-6 offset-md-3 col-sm-10 offset-sm-1 mb-0">
             <h2> <%= listing.title %></h2>
         </div>
-        <div class="card col-6 offset-3">
+        <div class="card listing-card col-6 offset-3 col-md-6 offset-md-3 col-sm-10 offset-sm-1 ">
             <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="<%= listing.title %>">
             <div class="card-body">
                 <h5 class="card-text mt-2">"<%= listing.description %>"</h5>
@@ -13,15 +13,50 @@
             </div><br>
             <div class="btns">
             <form method="GET" action="/listings/<%= listing._id%>/edit">
-                    <button class="btn"> Edit</button>
-        </form>
-
-        <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
-                    <button class="btn"> Delete </button>
-        </form>
-        </div>
-        </div>
-        
-        
-        </div> 
+                <button class="btn"> Edit</button>
+            </form>
+            <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
+                <button class="btn"> Delete </button>
+            </form>
+            </div><hr>
+            </div>
+            <div class="reviews-section col-6 offset-3 mb-3">
+            <form method="POST" action="/listings/<%= listing._id %>/reviews" class="needs-validation" novalidate>    
+                <h3>Leave a Review</h3>
+                <div>
+                    <label for="rating" class="form-label"><i class="fa-solid fa-star-half-stroke"></i>Rating</label>&nbsp;
+                    <input type="range" " id="rating" name="review[rating]" min="1" max="5" value="3"><br>
+                </div>
+                <div class="mb-2">
+                    <label for="comment" class="form-label"><i class="fa-solid fa-comment"></i>Comment</label>
+                    <textarea id="comment" class="form-control " name="review[comment]" cols="20" rows="5" required placeholder="Write your comment..."></textarea>
+                    <div class="invalid-feedback">
+                     Please leave a comment.
+                    </div>
+                </div>
+                
+                <button class="btn"> Submit </button>
+                 
+            </form><hr>
+             </div>
+            <div class="row">
+                <div class="div offset-3">
+                   <h3>All Reviews</h3>
+                   </div>
+                <% for(review of listing.reviews){ %>
+                    
+                    <div class="card col-6 offset-3 mb-2 pe-0" >
+                        <div class="card-body">
+                            <h5 class="card-title">USER ABC</h5>
+                            <p class="card-text rmm"><%- getStarRatingHTML(review.rating) %></p>
+                            <p class="card-text d-flex justify-content-between align-items-end"><%= review.comment %> <form class="delbtnform"><button class="delbtn" ><i class="fa-solid fa-trash"></i></button></form></p>
+                            
+                        </div>
+                    </div>
+                <% } %>
+                </div>
+            </div>
+   
+    
+    
     
