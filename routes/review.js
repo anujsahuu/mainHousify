@@ -28,7 +28,7 @@ router.post("/", validateReview, wrapAsync(async (req,res)=>{
     req.flash("success", "Successfully added a review!");
     res.redirect(`/listings/${listing._id}`);
 }));
-
+ 
 router.delete("/:reviewId", wrapAsync(async (req,res,next)=>{
     const {id, reviewId} = req.params;
     await Listing.findByIdAndUpdate(id, {$pull: {reviews: reviewId}});  //the $pull operator removes from an existing array all instances of a value or values that match a specified condition.
