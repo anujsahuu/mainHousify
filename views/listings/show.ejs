@@ -49,7 +49,11 @@
                         <div class="card-body">
                             <h5 class="card-title">USER ABC</h5>
                             <p class="card-text rmm"><%- getStarRatingHTML(review.rating) %></p>
-                            <p class="card-text d-flex justify-content-between align-items-end"><%= review.comment %> <form class="delbtnform"><button class="delbtn" ><i class="fa-solid fa-trash"></i></button></form></p>
+                            <div class="d-flex justify-content-between align-items-end">
+                                <p class="card-text mb-0"><%= review.comment %></p> 
+                                <form class="delbtnform" method="post" action="/listings/<%= listing._id%>/reviews/<%=review._id%>?_method=DELETE"><button class="delbtn" ><i class="fa-solid fa-trash" style="font-size: medium;"></i></button></form>
+                            </div>
+                            
                             
                         </div>
                     </div>
