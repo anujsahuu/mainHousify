@@ -9,3 +9,15 @@
          ></button>
 </div>
 <% } %>
+
+<% if(error && error.length ){ %>
+<div class="alert alert-danger alert-dismissable fade show col-8 offset-3 col-md-6 offset-md-3 col-sm-10 offset-sm-1 mb-0" role="alert" style="display:flex; justify-content: space-between;">
+    <%= error %>
+    <button 
+    type="button"
+     class="btn-close" 
+     data-bs-dismiss="alert" 
+     aria-label="Close" 
+         ></button>
+</div>
+<% } %>

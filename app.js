@@ -10,12 +10,18 @@ const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressErrors.js");
 const { listingSchema, reviewSchema } = require("./schema.js");
 const Review = require("./models/review.js");
-const listing = require("./routes/listing.js");
-const review = require("./routes/review.js");
+
+const listingRouter = require("./routes/listing.js");
+const reviewRouter = require("./routes/review.js");
+const userRouter = require("./routes/user.js");
+
 const MONGO_URl = "mongodb://127.0.0.1:27017/housify";
 const router = require("express").Router();
 const session = require("express-session"); 
 const flash= require("connect-flash");
+const passport = require("passport");
+const localStrategy = require("passport-local");
+const User = require("./models/user.js");
 
 connectToDatabase().then(() => {
     console.log("Connected to MongoDB");
@@ -47,6 +53,14 @@ const sessionOptions = {
 app.use(session(sessionOptions));
 app.use(flash());
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new localStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+//success and error flash middleware
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
@@ -58,8 +72,9 @@ app.get("/", (req, res) => {
     res.send("Hello World"); }
 );
 
-app.use("/listings", listing); // Use the listing routes
-app.use("/listings/:id/reviews" , review); // Use the review routes
+app.use("/listings", listingRouter); // Use the listing routes
+app.use("/listings/:id/reviews" , reviewRouter); // Use the review routes
+app.use("/", userRouter); // Use the user routes
 
 //Handle all other routes - 404 Not Found
 app.all("/:pathMatch", (req,res,next)=> {

@@ -1,0 +1,37 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row">
+            <div class="col-6 offset-3">
+                <form method="POST" action="/signup" class="needs-validation" novalidate>
+                
+                <h2>SignUp on Housify</h2>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" id="username" name="username" class="form-control" required>
+                <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+                <div class="invalid-feedback">Enter a valid email</div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+            
+            <div class="form-check">
+                
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required> &nbsp;
+                <label class="form-check-label" for="invalidCheck">
+                    <a href="/listings/tnc"> Agree to terms and conditions</a>
+                </label>
+                <div class="invalid-feedback">
+                    You must agree before submitting.
+                </div>
+            </div><br>
+            <button type="submit" class="btn btn-dark ">Signup</button>
+            </form>    
+        </div>
+
+            </div>
