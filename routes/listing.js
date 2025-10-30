@@ -5,6 +5,7 @@ const wrapAsync = require("../utils/wrapAsync.js");
 const ExpressError = require("../utils/ExpressErrors.js");
 const Listing = require("../models/listing.js");
 const { listingSchema,reviewSchema } = require("../schema.js");
+const { isLoggedIn } = require("../middleware.js");
 
 
 //Middleware to validate listing data using Joi schema
@@ -24,7 +25,7 @@ router.get("/", async (req,res)=>{
 });
 
 //Form to create new listing
-router.get("/new", (req,res)=>{
+router.get("/new", isLoggedIn, (req,res)=>{
    res.render("listings/new.ejs");
 });
 
@@ -34,7 +35,7 @@ router.get("/tnc", (req,res)=>{
  });
 
  //Form to edit listing
-router.get("/:id/edit", async (req,res)=>{
+router.get("/:id/edit", isLoggedIn, async (req,res)=>{
     const {id} = req.params;
     const listing = await Listing.findById(id);
     res.render("listings/edit.ejs", {listing});
@@ -65,7 +66,7 @@ router.get("/:id", wrapAsync(async (req,res)=>{
 }));
 
 //Create new listing
-router.post("/", wrapAsync(async (req,res)=>{
+router.post("/", isLoggedIn, wrapAsync(async (req,res)=>{
    let result = listingSchema.validate(req.body);
 
    if(result.error){
@@ -90,7 +91,7 @@ router.post("/", wrapAsync(async (req,res)=>{
 );
 
 //update listing
-router.put("/:id",validateListing, wrapAsync(async (req,res)=>{
+router.put("/:id", isLoggedIn, validateListing, wrapAsync(async (req,res)=>{
     const { id } = req.params;
     
     // 1. Extract the image URL submitted by the corrected form: listing[image][url]
@@ -116,7 +117,7 @@ router.put("/:id",validateListing, wrapAsync(async (req,res)=>{
 }));
 
 //delete listing
-router.delete("/:id", wrapAsync(async (req,res)=>{
+router.delete("/:id", isLoggedIn, wrapAsync(async (req,res)=>{
     const {id} = req.params;
 
     await Listing.findByIdAndDelete(id);
