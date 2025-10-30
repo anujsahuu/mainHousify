@@ -61,7 +61,8 @@ function getStarRatingHTML(rating) {
 //Show individual listing details
 router.get("/:id", wrapAsync(async (req,res)=>{
     const {id} = req.params;
-   const listing =  await Listing.findById(id).populate("reviews");
+   const listing =  await Listing.findById(id).populate("reviews").populate("owner");
+   console.log(listing);
    res.render("listings/show.ejs", {listing, getStarRatingHTML});
 }));
 
@@ -74,14 +75,20 @@ router.post("/", isLoggedIn, wrapAsync(async (req,res)=>{
    }
 
     // Extract the listing data from the request body
-    const newListingData = req.body.listing; 
-
+    const newListingData = req.body.listing;
+    const newImageUrl = req.body.listing.image; 
+    // If an image URL is provided, set it
+    if (newImageUrl) {
+        newListingData.image = { url: newImageUrl };
+    }
     // Convert price to a number
     newListingData.price = parseFloat(newListingData.price); 
 
     // Create a new listing instance
     const newListing = new Listing(newListingData);
-    console.log(newListing);
+
+    // Set the owner of the listing to the currently logged-in user
+    newListing.owner = req.user._id;
 
     // Save the listing to the database
     await newListing.save(); 
