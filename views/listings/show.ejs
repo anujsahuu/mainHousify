@@ -13,16 +13,20 @@
                 <h5 class="card-text">&#8377 <%= listing.price ? listing.price.toLocaleString("en-IN") : 'N/A' %></h5>
                 <h5 class="card-text"><i class="fa-solid fa-location-dot"></i> <%= listing.location %> , <%= listing.country %></h5>
             </div><br>
-            <div class="btns">
-            <form method="GET" action="/listings/<%= listing._id%>/edit">
-                <button class="btn"> Edit</button>
-            </form>
-            <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
-                <button class="btn"> Delete </button>
-            </form>
-            </div><hr>
+
+            <% if( currUser && currUser._id.equals(listing.owner._id)) { %>
+            <div class="btns">   
+                <form method="GET" action="/listings/<%= listing._id%>/edit">
+                    <button class="btn"> Edit</button>
+                </form>
+                <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
+                    <button class="btn"> Delete </button>
+                </form>
             </div>
+            <% } %><hr>
+        </div>
             <div class="reviews-section col-6 offset-3 mb-3">
+            <% if(currUser){ %>
             <form method="POST" action="/listings/<%= listing._id %>/reviews" class="needs-validation" novalidate>    
                 <h3>Leave a Review</h3>
                 <div>
@@ -39,7 +43,8 @@
                 
                 <button class="btn"> Submit </button>
                  
-            </form><hr>
+            </form>
+            <% } %>
              </div>
             <div class="row">
                 <div class="div offset-3">
@@ -49,11 +54,16 @@
                     
                     <div class="card col-6 offset-3 mb-2 pe-0" >
                         <div class="card-body">
-                            <h5 class="card-title">USER ABC</h5>
-                            <p class="card-text rmm"><%- getStarRatingHTML(review.rating) %></p>
-                            <div class="d-flex justify-content-between align-items-end">
+                            <p class="card-title"><b>@<%=review.author.username %></b></p>
+                            
+                            <div class="d-flex justify-content-between align-items-end ">
+                                <div>
+                                    <p class="card-text rmm"><%- getStarRatingHTML(review.rating) %></p>    
                                 <p class="card-text mb-0"><%= review.comment %></p> 
+                                </div>
+                                 <% if(currUser){ %>
                                 <form class="delbtnform" method="post" action="/listings/<%= listing._id%>/reviews/<%=review._id%>?_method=DELETE"><button class="delbtn" ><i class="fa-solid fa-trash" style="font-size: medium;"></i></button></form>
+                                <% } %>
                             </div>
                             
                             

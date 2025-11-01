@@ -1,22 +1,14 @@
 const express = require("express");
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("../utils/wrapAsync.js");
 const ExpressError = require("../utils/ExpressErrors.js");
 const Listing = require("../models/listing.js");
 const { listingSchema,reviewSchema } = require("../schema.js");
-const { isLoggedIn } = require("../middleware.js");
+const { isLoggedIn, isOwner } = require("../middleware.js");
+const { validateListing } = require("../middleware.js");
 
 
-//Middleware to validate listing data using Joi schema
-const validateListing = (req, res, next) => {
-    const { error } = listingSchema.validate(req.body);
-    if (error) {
-        throw new ExpressError(400, error);
-    }   else {
-            next();
-        }
-};
 
 //Main Page - List all listings
 router.get("/", async (req,res)=>{
@@ -35,7 +27,7 @@ router.get("/tnc", (req,res)=>{
  });
 
  //Form to edit listing
-router.get("/:id/edit", isLoggedIn, async (req,res)=>{
+router.get("/:id/edit", isLoggedIn,isOwner, async (req,res)=>{
     const {id} = req.params;
     const listing = await Listing.findById(id);
     res.render("listings/edit.ejs", {listing});
@@ -61,7 +53,10 @@ function getStarRatingHTML(rating) {
 //Show individual listing details
 router.get("/:id", wrapAsync(async (req,res)=>{
     const {id} = req.params;
-   const listing =  await Listing.findById(id).populate("reviews").populate("owner");
+   const listing =  await Listing.findById(id)
+   .populate({path: "reviews", 
+    populate:({path:"author"})})
+   .populate("owner");
    console.log(listing);
    res.render("listings/show.ejs", {listing, getStarRatingHTML});
 }));
@@ -98,7 +93,7 @@ router.post("/", isLoggedIn, wrapAsync(async (req,res)=>{
 );
 
 //update listing
-router.put("/:id", isLoggedIn, validateListing, wrapAsync(async (req,res)=>{
+router.put("/:id", isLoggedIn, isOwner, validateListing, wrapAsync(async (req,res)=>{
     const { id } = req.params;
     
     // 1. Extract the image URL submitted by the corrected form: listing[image][url]
@@ -124,7 +119,7 @@ router.put("/:id", isLoggedIn, validateListing, wrapAsync(async (req,res)=>{
 }));
 
 //delete listing
-router.delete("/:id", isLoggedIn, wrapAsync(async (req,res)=>{
+router.delete("/:id", isLoggedIn, isOwner, wrapAsync(async (req,res)=>{
     const {id} = req.params;
 
     await Listing.findByIdAndDelete(id);
