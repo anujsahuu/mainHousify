@@ -1,4 +1,5 @@
 const Listing = require("../models/listing");
+const listingSchema = require("../schema.js").listingSchema;
 
 //Main Page - List all listings
 module.exports.listings = async (req,res)=>{
@@ -52,25 +53,30 @@ module.exports.showListing = async (req,res)=>{
 
 //Create new listing
 module.exports.createListing = async (req,res)=>{
+    const url = req.file.path;
+    const filename = req.file.filename;
+    
    let result = listingSchema.validate(req.body);
 
    if(result.error){
         throw new ExpressError(400, result.err);
+
    }
 
     // Extract the listing data from the request body
     const newListingData = req.body.listing;
-    const newImageUrl = req.body.listing.image; 
-    // If an image URL is provided, set it
-    if (newImageUrl) {
-        newListingData.image = { url: newImageUrl };
-    }
+    // const newImageUrl = req.body.listing.image; 
+    // // If an image URL is provided, set it
+    // if (newImageUrl) {
+    //     newListingData.image = { url: newImageUrl };
+    // }
+
     // Convert price to a number
     newListingData.price = parseFloat(newListingData.price); 
 
     // Create a new listing instance
     const newListing = new Listing(newListingData);
-
+    newListing.image = { url: url, filename: filename};
     // Set the owner of the listing to the currently logged-in user
     newListing.owner = req.user._id;
 

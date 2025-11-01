@@ -8,12 +8,20 @@ const { listingSchema,reviewSchema } = require("../schema.js");
 const { isLoggedIn, isOwner } = require("../middleware.js");
 const { validateListing } = require("../middleware.js");
 const listingsController = require("../controllers/listings.js")
+const multer  = require("multer");
+const {storage} = require("../cloudConfig.js");
+const upload = multer({storage: storage});
 
 //List all listings and create new listing
 router
     .route("/")
     .get( wrapAsync(listingsController.listings))
-    .post(isLoggedIn, wrapAsync(listingsController.createListing));
+    .post(
+        isLoggedIn,
+        upload.single("listing[image]"), 
+        validateListing, 
+        wrapAsync(listingsController.createListing));
+    
 
 //Form to create new listing
 router.get("/new", isLoggedIn, listingsController.renderNewForm);
