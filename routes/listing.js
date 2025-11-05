@@ -35,7 +35,7 @@ router.get("/:id/edit", isLoggedIn,isOwner, listingsController.renderEditForm );
 router
     .route("/:id")
     .get( wrapAsync(listingsController.showListing)) //Show individual listing details
-    .put( isLoggedIn, isOwner, validateListing, wrapAsync(listingsController.updateListing)) //Update listing
+    .put( isLoggedIn, isOwner, upload.single("listing[image]"), validateListing, wrapAsync(listingsController.updateListing)) //Update listing
     .delete( isLoggedIn, isOwner, wrapAsync(listingsController.deleteListing)); //Delete listing
 
 module.exports = router;

@@ -20,7 +20,17 @@ module.exports.tnc = (req,res)=>{
 module.exports.renderEditForm = async (req,res)=>{
     const {id} = req.params;
     const listing = await Listing.findById(id);
-    res.render("listings/edit.ejs", {listing});
+
+    if(!listing){
+        req.flash("error", "Listing not found!");
+        return res.redirect("/listings");
+    }
+
+    let originalImageUrl = listing.image.url;
+    //https://res.cloudinary.com/demo/image/upload/ar_1.0,c_fill,h_250/bo_5px_solid_lightblue/leather_bag_gray.jpg
+    originalImageUrl = originalImageUrl.replace("/upload","/upload/ar_1.0,c_fill,h_250/bo_5px_solid_rgb:D2C4FB");
+
+    res.render("listings/edit.ejs", {listing, originalImageUrl});
 }
 
 function getStarRatingHTML(rating) {
@@ -89,25 +99,20 @@ module.exports.createListing = async (req,res)=>{
 //update listing
 module.exports.updateListing = async (req,res)=>{
     const { id } = req.params;
-    
-    // 1. Extract the image URL submitted by the corrected form: listing[image][url]
-    const newImageUrl = req.body.listing.image.url;
-    
-    // 2. Remove the image data from the main body object to prevent Mongoose from trying to overwrite the whole object
-    delete req.body.listing.image; 
 
     // 3. Update all simple fields (title, price, description, etc.)
     let listing = await Listing.findByIdAndUpdate(id, { ...req.body.listing });
 
-    // 4. Manually update the nested image.url field if a value was submitted
-    if (newImageUrl) {
-        // Since you removed the image object in step 2, Mongoose loaded the old listing.
-        // We now safely update ONLY the URL on the loaded document.
-        listing.image.url = newImageUrl;
+    if(typeof req.file !== "undefined"){
+        const url = req.file.path;
+        const filename = req.file.filename;
+
+        listing.image = { url: url, filename: filename};
+        
+        // 5. Save the document to apply the nested change (important!)
+        await listing.save();
     }
-    
-    // 5. Save the document to apply the nested change (important!)
-    await listing.save();
+    req.flash("success", "Successfully updated the listing!");
     res.redirect(`/listings/${listing._id}`);
 
 }

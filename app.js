@@ -71,9 +71,9 @@ app.use((req, res, next) => {
 });
 
 //Home route
-app.get("/", (req, res) => {
-    res.send("Hello World"); }
-);
+// app.get("/", (req, res) => {
+//     res.send("Hello World"); }
+// );
 
 app.use("/listings", listingRouter); // Use the listing routes
 app.use("/listings/:id/reviews" , reviewRouter); // Use the review routes
