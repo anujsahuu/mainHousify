@@ -86,7 +86,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-    res.render("../views/index.ejs");
+    res.render("listings/index.ejs");
 });
 
 app.use("/listings", listingRouter); // Use the listing routes
