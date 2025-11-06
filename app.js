@@ -17,9 +17,12 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
-const MONGO_URl = "mongodb://127.0.0.1:27017/housify";
+// const MONGO_URl = "mongodb://127.0.0.1:27017/housify";
+const db_url = process.env.ATLAS_DB_URL;
+
 const router = require("express").Router();
 const session = require("express-session"); 
+const MongoStore = require('connect-mongo');
 const flash= require("connect-flash");
 const passport = require("passport");
 const localStrategy = require("passport-local");
@@ -32,7 +35,7 @@ connectToDatabase().then(() => {
 });
 
 async function connectToDatabase() {
-        await mongoose.connect(MONGO_URl);
+        await mongoose.connect(db_url);
 }
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -42,7 +45,7 @@ app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 
 const sessionOptions = {
-    secret: "thisshouldbeabettersecret!",
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -51,6 +54,18 @@ const sessionOptions = {
         httpOnly: true
     }
 }
+
+const store = MongoStore.create({
+    mongoUrl: db_url,
+    crypto : {
+        secret: process.env.SECRET,
+    },
+    touchAfter: 24 * 3600, // time period in seconds
+});
+
+store.on("error", function(e){
+    console.log("SESSION STORE ERROR", e);
+});
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -69,11 +84,6 @@ app.use((req, res, next) => {
     res.locals.currUser = req.user;
     next();
 });
-
-//Home route
-// app.get("/", (req, res) => {
-//     res.send("Hello World"); }
-// );
 
 app.use("/listings", listingRouter); // Use the listing routes
 app.use("/listings/:id/reviews" , reviewRouter); // Use the review routes
