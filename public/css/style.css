@@ -9,12 +9,7 @@ body{
     min-height: 100vh;
 }
 
-.plus-jakarta-sans-<uniquifier> {
-  font-family: "Plus Jakarta Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-}
+
 nav{
     background-color: white !important;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
