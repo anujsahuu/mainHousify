@@ -16,14 +16,6 @@ body{
   font-style: normal;
 }
 
-.navbar{
-    height: 4rem;
-    padding :0 !important;
-}
-.nav{
-    background-color: grey;
-    height: 4rem !important;
-}
 .nav a:hover{
     background-color: #d2c4fb !important;
     color: black !important;
@@ -46,6 +38,11 @@ body{
 }
 .sidebar li{
     width: 100%;
+}
+@media(max-width:800px){
+    .hideOnMobile{
+        display: none !important;
+    }
 }
 /* .bgimage{
     background-image: url('/images/homepage.jpg');
