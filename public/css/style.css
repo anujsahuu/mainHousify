@@ -34,8 +34,8 @@ body{
     margin-bottom: 120px;
 } */
 .container{
-    flex: 1;
-    margin-top: 20px !important;
+    /* flex: 1;
+    margin-top: 20px !important; */
 }
 /* 
 .tagline{
