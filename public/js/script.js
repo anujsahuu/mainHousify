@@ -19,9 +19,11 @@
 })
 
 function showSidebar() {
-  document.querySelector('.sidebar').style.display = 'flex';
+  const sidebar = document.querySelector('.sidebar')
+  sidebar.style.display = 'flex';
 }
 
 function hideSidebar() {
-  document.querySelector('.sidebar').style.display = 'none';
+  const sidebar = document.querySelector('.sidebar')
+  sidebar.style.display = 'none';
 }

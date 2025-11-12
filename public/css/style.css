@@ -73,10 +73,17 @@ body{
 .sidebar a{
     width: 100%;
 }
+.displayMenu{
+    display: none !important;
+}
+
 
 @media(max-width:800px){
     .hideOnMobile{
         display: none !important;
+    }
+    .displayMenu{
+        display: block !important;
     }
 } 
 
