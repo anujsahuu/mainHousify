@@ -1,4 +1,11 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
 body{
+    min-height: 100vh !important;
+     background-color: #f5f5f5 !important;
     margin :0 !important;
     padding :0 !important;
     padding-top: 70px !important;
@@ -40,7 +47,7 @@ nav li:first-child{
 }
 
 nav a:hover{
-    background-color: #d2c4fb !important;
+    background-color: #f0f0f0 !important;
     color: black !important;
 }
 
