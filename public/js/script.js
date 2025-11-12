@@ -18,12 +18,12 @@
   })
 })
 
-function showSidebar() {
-  const sidebar = document.querySelector('.sidebar')
-  sidebar.style.display = 'flex';
+function showSideBar() {
+    const sideBar = document.querySelector('.sidebar');
+    sideBar.style.display = 'flex';
 }
 
-function hideSidebar() {
-  const sidebar = document.querySelector('.sidebar')
-  sidebar.style.display = 'none';
+function hideSideBar() {
+    const sideBar = document.querySelector('.sidebar');
+    sideBar.style.display = 'none';
 }
