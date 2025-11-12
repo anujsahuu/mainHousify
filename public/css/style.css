@@ -32,7 +32,7 @@ nav a{
     align-items: center !important;
     color: black !important;
 }
-nav li:first-child{
+nav li:first-child , nav li:last-child{
     margin-right: auto !important;
 }
 
