@@ -69,6 +69,8 @@ nav a:hover{
 }
 .displayMenu{
     display: none !important;
+    z-index: 1100 !important;
+    margin-right: auto !important;
 
 }
 nav ul li img{
