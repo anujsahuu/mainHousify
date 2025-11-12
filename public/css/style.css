@@ -14,6 +14,8 @@ nav{
     background-color: white !important;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
     position: fixed !important;
+    width: 100% !important;
+    margin-top: 0 !important;
 }
 nav ul{
     width: 100%;
@@ -56,17 +58,21 @@ nav a:hover{
     align-items: flex-start;
     justify-content: flex-start;
 }
+
 .sidebar li{
     width: 100%;
 }
+
 .sidebar a{
     width: 100%;
 }
+
 @media(max-width:800px){
     .hideOnMobile{
         display: none !important;
     }
 }
+
 /* .bgimage{
     background-image: url('/images/homepage.jpg');
     height: 80vh;
