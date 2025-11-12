@@ -14,12 +14,15 @@ body{
 nav{
     background-color: white !important;
     height: 50px !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
 }
 nav ul{
     width: 100%;
     list-style: none !important;
     display: flex !important;
     justify-content: center !important;
+    margin-left: 20px !important;
+    margin-right: 20px !important;
 }
 nav li{
     height: 50px !important;
@@ -32,7 +35,7 @@ nav a{
     align-items: center !important;
     color: black !important;
 }
-nav li:first-child , nav li:last-child{
+ nav li:nth-child(2){
     margin-right: auto !important;
 }
 
@@ -74,7 +77,7 @@ nav a:hover{
         display: none !important;
     }
     .displayMenu{
-        display: block !important;
+        display: flex !important;
     }
 } 
 
