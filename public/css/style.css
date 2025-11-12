@@ -84,6 +84,9 @@ nav ul li img{
     .displayMenu{
         display: block !important;
     }
+    .sidebar.active {
+        display: flex; /* or whatever display property you need (block, flex, etc.) */
+    }
 } 
 
 /* .bgimage{

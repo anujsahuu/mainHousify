@@ -24,13 +24,13 @@
         <%- body%>
     </div>
     <%- include("../includes/footer.ejs") %>
-    
-    <script>
-        function showSideBar() {
-        const sideBar = document.querySelector('.sidebar');
-        sideBar.style.display = 'flex';
-        }
 
+    <script>
+        function toggleSideBar() {
+    const sideBar = document.querySelector('.sidebar');
+    // Toggles a class named 'active' on the sidebar
+    sideBar.classList.toggle('active'); 
+}
         function hideSideBar() {
           const sideBar = document.querySelector('.sidebar');
              sideBar.style.display = 'none';
