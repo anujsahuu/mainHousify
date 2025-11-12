@@ -5,7 +5,7 @@
 
 body{
     min-height: 100vh !important;
-    padding-top: 70px !important;
+    /* padding-top: 70px !important; */
     box-sizing : border-box !important;
     font-family: "plus jakarta sans", sans-serif !important;
     display: flex;
@@ -13,6 +13,7 @@ body{
 }
 nav{
     background-color: white !important;
+    height: 50px !important;
 }
 nav ul{
     width: 100%;
@@ -42,18 +43,18 @@ nav a:hover{
 
 .sidebar{
     position: fixed;
-    height: 100vh;
     top: 0;
     right: 0;
+    height: 100vh;
     width: 250px;
     z-index: 1000;
     background-color: rgba(255,255,255,0.2);
-    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    display: none;
+    backdrop-filter: blur(10px); 
+    display: none !important;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
 }
 
 .sidebar li{
