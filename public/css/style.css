@@ -5,36 +5,25 @@
 
 body{
     min-height: 100vh !important;
-    margin :0 !important;
-    padding :0 !important;
-    /* padding-top: 70px !important; */
+    padding-top: 70px !important;
     box-sizing : border-box !important;
     font-family: "plus jakarta sans", sans-serif !important;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
 }
-
-
-.topNav{
+nav{
     background-color: white !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-    position: fixed !important;
-    width: 100% !important;
-    margin-top: 0 !important;
 }
-.topNav ul{
+nav ul{
     width: 100%;
     list-style: none !important;
     display: flex !important;
-    align-items: center !important;
-    justify-content: flex-end !important;
-    height: 100% !important;
+    justify-content: center !important;
 }
-.topNav li{
+nav li{
     height: 50px !important;
 }
-.topNav a{
+nav a{
     height: 100% !important;
     padding: 0 30px !important;
     text-decoration: none !important;
@@ -42,35 +31,36 @@ body{
     align-items: center !important;
     color: black !important;
 }
-.topNav li:first-child{
+nav li:first-child{
     margin-right: auto !important;
 }
 
-.topNav a:hover{
+nav a:hover{
     background-color: #f0f0f0 !important;
     color: black !important;
 }
 
-.topNav .sidebar{
-    height: 100vh;
+.sidebar{
     position: fixed;
+    height: 100vh;
     top: 0;
     right: 0;
     width: 250px;
     z-index: 1000;
     background-color: rgba(255,255,255,0.2);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     display: none;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
 }
 
-.topNav .sidebar li{
+.sidebar li{
     width: 100%;
 }
 
-.topNav .sidebar a{
+.sidebar a{
     width: 100%;
 }
 .displayMenu{

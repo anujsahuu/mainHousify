@@ -1,31 +1,19 @@
-<nav class="topNav">
-  <ul class="sidebar">
-    <li onclick=hideSidebar()><i class="fa-solid fa-xmark"></i></li>
-    <li><a href="/listings">All Listings</a></li>
-    <li><a href="/listings/new">Add New Listing</a></li>
-    <li><a href="/listings/tnc">Terms & Conditions</a></li>
-    <% if(currUser){ %>
-    <li><a href="/logout">Logout</a></li>
-    <% } %>
-    <% if(!currUser){ %>
-    <li><a href="/signup">Signup</a></li>
-    <li><a href="/login">Login</a></li>
-    <% } %>
-  </ul>
-</nav>
 <nav>
-  <ul>
-    <li> <img src="/public/images/logo-removebg-preview.png" alt="housify"></li>
-    <li class="hideOnMobile"><a href="/listings">All Listings</a></li>
-    <li class="hideOnMobile"><a href="/listings/new">Add New Listing</a></li>
-    <li class="hideOnMobile"><a href="/listings/tnc">Terms & Conditions</a></li>
-    <% if(currUser){ %>
-    <li class="hideOnMobile"><a href="/logout">Logout</a></li>
-    <% } %>
-    <% if(!currUser){ %>
-    <li class="hideOnMobile"><a href="/signup">Signup</a></li>
-    <li class="hideOnMobile"><a href="/login">Login</a></li>
-    <% } %>
-    <li class="displayMenu" onclick=showSidebar()><i class="fa-solid fa-bars"></i></li>
-  </ul>
+    <ul class="sidebar">
+        <li  onclick=hideSideBar()><a href="#">cross</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="blog.html">Blog</a></li>
+    </ul>
+    <ul>
+        <li> <img src="#" alt="logo"></li>
+        <li class="hideOnMobile"><a href="index.html">Home</a></li>
+        <li class="hideOnMobile"><a href="about.html">About</a></li>
+        <li class="hideOnMobile"><a href="services.html">Services</a></li>
+        <li class="hideOnMobile"><a href="contact.html">Contact</a></li>
+        <li class="hideOnMobile"><a href="blog.html">Blog</a></li>
+        <li onclick=showSideBar()><a href="#">Menu</a></li>
+    </ul>
 </nav>
