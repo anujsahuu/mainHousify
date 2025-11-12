@@ -43,7 +43,10 @@ nav a:hover{
     background-color: #f0f0f0 !important;
     color: black !important;
 }
-
+nav i:hover{
+    cursor: pointer !important;
+    color: black !important;
+}
 .sidebar{
     position: fixed;
     top: 0;
@@ -70,7 +73,7 @@ nav a:hover{
 .displayMenu{
     display: none !important;
     z-index: 1100 !important;
-    margin-right: auto !important;
+    margin-left: auto !important;
 
 }
 nav ul li img{
