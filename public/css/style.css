@@ -5,10 +5,9 @@
 
 body{
     min-height: 100vh !important;
-     background-color: #f5f5f5 !important;
     margin :0 !important;
     padding :0 !important;
-    padding-top: 70px !important;
+    /* padding-top: 70px !important; */
     box-sizing : border-box !important;
     font-family: "plus jakarta sans", sans-serif !important;
     display: flex;
@@ -30,6 +29,7 @@ nav ul{
     display: flex !important;
     align-items: center !important;
     justify-content: flex-end !important;
+    height: 100% !important;
 }
 nav li{
     height: 50px !important;
