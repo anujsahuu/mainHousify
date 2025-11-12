@@ -51,7 +51,7 @@ body{
     color: black !important;
 }
 
-.sidebar{
+.topNav .sidebar{
     height: 100vh;
     position: fixed;
     top: 0;
@@ -66,11 +66,11 @@ body{
     justify-content: flex-start;
 }
 
-.sidebar li{
+.topNav .sidebar li{
     width: 100%;
 }
 
-.sidebar a{
+.topNav .sidebar a{
     width: 100%;
 }
 .displayMenu{
