@@ -43,11 +43,10 @@ nav a{
     color: black;
 }
 .cross{
-    height: 100%;
     padding: 0 30px;
     text-decoration: none;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     color: black;
 }
 nav li:first-child{
