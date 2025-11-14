@@ -97,7 +97,8 @@ nav ul li img{
 }
 
 .logo{
-    display: flex;
+    display: inline-block;
+    margin-left: 30px;
     height: 100%;
     width: auto;
     align-items: center;
