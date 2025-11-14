@@ -18,9 +18,9 @@ nav{
 }
 nav ul{
     width: 100%;
-    list-style: none !important;
-    display: flex !important;
-    justify-content: center !important;
+    list-style: none;
+    display: flex;
+    justify-content: center;
     padding-left: 20px !important;
     padding-right: 20px !important;
 }
@@ -51,15 +51,15 @@ nav i:hover{
     position: fixed;
     top: 0;
     right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
     height: 100vh;
     width: 250px;
-    z-index: 1000;
+    z-index: 999;
     background-color: rgba(255,255,255,0.2);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px); 
-    flex-direction: column;
-    align-items: flex-start !important;
-    justify-content: flex-start !important;
 }
 
 .sidebar li{
