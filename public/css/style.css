@@ -19,6 +19,7 @@ nav{
     position: fixed;
     top: 0;
     width: 100%;
+    z-index: 1000;
 }
 nav ul{
     width: 100%;
@@ -55,6 +56,7 @@ nav i:hover{
     position: fixed;
     top: 0;
     right: 0;
+    display: none;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
