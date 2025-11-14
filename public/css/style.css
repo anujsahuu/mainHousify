@@ -4,36 +4,40 @@
 }
 
 body{
-    min-height: 100vh !important;
+    min-height: 100vh;
     /* padding-top: 70px !important; */
     box-sizing : border-box !important;
     font-family: "plus jakarta sans", sans-serif !important;
     display: flex;
     flex-direction: column;
+    margin-top: 60px;
 }
 nav{
-    background-color: white !important;
-    height: 50px !important;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+    background-color: white;
+    height: 50px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 nav ul{
     width: 100%;
     list-style: none;
     display: flex;
     justify-content: center;
-    padding-left: 20px !important;
-    padding-right: 20px !important;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 nav li{
-    height: 50px !important;
+    height: 50px;
 }
 nav a{
-    height: 100% !important;
-    padding: 0 30px !important;
-    text-decoration: none !important;
-    display: flex !important;
-    align-items: center !important;
-    color: black !important;
+    height: 100%;
+    padding: 0 30px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: black;
 }
  nav li:nth-child(2){
     margin-right: auto !important;
@@ -69,30 +73,21 @@ nav i:hover{
 .sidebar a{
     width: 100%;
 }
-.displayMenu{
-    display: none !important;
-    z-index: 1100 !important;
-    margin-left: auto !important;
-
+.menu-button{
+    display: none;
 }
 nav ul li img{
-    height: 40px !important;
-    width: auto !important;
+    height: 50px;
+    width: auto;
 }
 
 
 @media(max-width:900px){
     .hideOnMobile{
-        display: none !important;
-    }
-    .displayMenu{
-        display: block !important;
-    }
-    .sidebar{
         display: none;
     }
-    .sidebar.active {
-        display: flex; /* or whatever display property you need (block, flex, etc.) */
+    .menu-button{
+        display: block;
     }
 } 
 
