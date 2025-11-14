@@ -49,6 +49,10 @@ nav a{
     align-items: flex-end;
     color: black;
 }
+.cross:hover{
+    cursor: pointer !important;
+    color: black !important;
+}
 nav li:first-child{
     margin-right: auto !important;
 }
