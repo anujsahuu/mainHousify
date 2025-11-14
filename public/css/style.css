@@ -56,9 +56,6 @@ nav a{
 nav li:first-child{
     margin-right: auto !important;
 }
- nav li:nth-child(2){
-    margin-right: auto !important;
-}
 
 nav a:hover{
     background-color: #f0f0f0 !important;
@@ -97,6 +94,13 @@ nav i:hover{
 nav ul li img{
     height: 50px;
     width: auto;
+}
+
+.logo{
+    display: flex;
+    height: 100%;
+    width: auto;
+    align-items: center;
 }
 
 
