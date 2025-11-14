@@ -93,7 +93,7 @@ nav i:hover{
     display: none;
 }
 nav ul li img{
-    height: 50px;
+    height: 40px;
     width: auto;
 }
 
@@ -111,8 +111,11 @@ nav ul li img{
         display: none;
     }
     .menu-button{
-        display: block;
+        height: 30px;
+        width: 30px;
+        display: flex;
         margin-left: auto;
+        align-items: center;
     }
 } 
 
